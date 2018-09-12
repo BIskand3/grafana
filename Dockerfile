@@ -17,14 +17,12 @@ RUN     apt-get -y install --no-install-recommends software-properties-common   
 RUN     pip install Twisted==11.1.0; pip install Django==1.5; pip install pytz; npm install ini chokidar
 
 RUN     mkdir /src                                                                                                              &&\
-
 # Install Grafana
         mkdir /src/grafana                                                                                                      &&\
         mkdir /opt/grafana                                                                                                      &&\
         wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.3.1.linux-x64.tar.gz -O /src/grafana.tar.gz  &&\
         tar -xzf /src/grafana.tar.gz -C /opt/grafana --strip-components=1                                                       &&\
         rm /src/grafana.tar.gz                                                                                                  &&\
-
 # Fix some container permissions
         chown -R www-data /var/lib/nginx                                                                                        &&\
         chmod 755 /
